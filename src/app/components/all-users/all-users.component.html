@@ -1,0 +1,24 @@
+<nz-spin nzSize="large" [nzSpinning]="isSpinning">
+    <nz-table class="col-11 mx-auto" #basicTable [nzData]="dataSet">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td (click)="navigate(data.id)">{{data.firstName}}</td>
+                <td>{{data.phone}}</td>
+                <td>{{data.email}}</td>
+                <td>
+                    <a nz-button nzType="primary" routerLink="/user/edit/{{data.id}}" >Edit User</a>
+                    &nbsp;
+                    <button (click)="deleteUser(data.id)" nz-button nzType="primary">Delete User</button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</nz-spin>

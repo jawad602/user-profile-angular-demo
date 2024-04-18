@@ -1,0 +1,7 @@
+<nz-spin nzSize="large" [nzSpinning]="isSpinning">
+    <nz-card class="col-6 mx-auto" nzTitle="Profile">
+        <h4>{{user_data?.firstName || 'Name'}}</h4>
+        <p>{{user_data?.phone || 'Phone'}}</p>
+        <p>{{user_data?.email || 'email'}}</p>
+    </nz-card>
+</nz-spin>

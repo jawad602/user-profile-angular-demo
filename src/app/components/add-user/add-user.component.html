@@ -1,0 +1,38 @@
+<nz-spin nzSize="large" [nzSpinning]="isSpinning"></nz-spin>
+<div class="row">
+    <div class="col-6 mx-auto">
+        <nz-card [nzBordered]="true" nzTitle="Add New User">
+            <form nz-form [formGroup]="form" nzLayout="vertical" (ngSubmit)="submit()">
+
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="firstName">Name</nz-form-label>
+                    <nz-form-control nzErrorTip="Enter Name">
+                        <input type="text" nz-input formControlName="firstName" placeholder="Enter Name">
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="phone">Phone</nz-form-label>
+                    <nz-form-control nzErrorTip="Enter Phone">
+                        <input type="text" nz-input formControlName="phone" placeholder="Enter phone">
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="email">Email</nz-form-label>
+                    <nz-form-control nzErrorTip="Enter Email">
+                        <input type="text" nz-input formControlName="email" placeholder="Enter Email">
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-control>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button nz-button [nzType]="'primary'" [disabled]="!form.valid">
+                            {{user_id ? 'Update': 'Add'}}
+                        </button>
+                    </div>
+                </nz-form-control>
+            </form>
+        </nz-card>
+    </div>
+</div>
