@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ApiServices } from 'src/app/services/api-services.service';
 import { ComponentsCommunicationService } from 'src/app/services/components-communication.service';
@@ -21,6 +21,7 @@ export class ProfileComponent {
     private api_servicess: ApiServices,
     private route: ActivatedRoute,
     private message: NzMessageService,
+    private router: Router
   ) {
     this.component_communication.pageRoute.next('Profile');
 
@@ -49,6 +50,7 @@ export class ProfileComponent {
       // console.log(error);
       this.isSpinning = false;
       this.message.create('error', error?.statusText || error?.message);
+      this.router.navigateByUrl('/user/all');
     }
     );
   }
