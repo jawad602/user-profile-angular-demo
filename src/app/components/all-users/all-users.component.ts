@@ -31,7 +31,8 @@ export class AllUsersComponent {
   loadAllUSers() {
     this.isSpinning = true;
     this.sub.sink = this.api_service.loadUsers().subscribe((response: any) => {
-      this.dataSet = response.users;
+      this.dataSet = response;
+      console.log(response);
       this.isSpinning = false;
       this.message.create('success', 'All Users ');
     }, error => {
