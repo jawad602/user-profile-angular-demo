@@ -1,7 +1,7 @@
 <nz-spin nzSize="large" [nzSpinning]="isSpinning"></nz-spin>
 <div class="row">
     <div class="col-6 mx-auto">
-        <nz-card [nzBordered]="true" nzTitle="Add New User">
+        <nz-card [nzBordered]="true" nzTitle="{{user_id ? 'Update': 'Add New'}} User">
             <form nz-form [formGroup]="form" nzLayout="vertical" (ngSubmit)="submit()">
 
                 <nz-form-item>
