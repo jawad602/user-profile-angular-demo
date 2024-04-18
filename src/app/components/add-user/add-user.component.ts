@@ -38,8 +38,6 @@ export class AddUserComponent {
     this.route.paramMap.subscribe(params => {
       this.isSpinning = true;
       this.user_id = params.get('id');
-      console.log(this.user_id);
-
       if (this.user_id) {
         this.loadSingleUser(this.user_id);
       } else {
@@ -73,9 +71,7 @@ export class AddUserComponent {
       this.patchData(response);
       this.isSpinning = false;
       this.message.create('success', 'User Record Loaded!');
-      // console.log(this.user_data);
     }, error => {
-      // console.log(error);
       this.isSpinning = false;
       this.message.create('error', error?.statusText || error?.message);
     }
@@ -108,7 +104,6 @@ export class AddUserComponent {
         this.message.create('success', 'User Record Added!');
         this.router.navigateByUrl("/user/all");
       }, error => {
-        console.log(error)
         this.isSpinning = false;
         this.message.create('error', error?.statusText || error?.message);
       }

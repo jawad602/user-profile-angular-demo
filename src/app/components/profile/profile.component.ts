@@ -28,7 +28,6 @@ export class ProfileComponent {
     this.route.paramMap.subscribe(params => {
       this.isSpinning = true;
       this.user_id = params.get('id');
-      console.log(this.user_id)
       if (this.user_id) {
         this.loadSingleUser(this.user_id);
       }
@@ -45,9 +44,7 @@ export class ProfileComponent {
       this.component_communication.userName.next(this.user_data.firstName);
       this.isSpinning = false;
       this.message.create('success', 'User Record Loaded!');
-      // console.log(this.user_data);
     }, error => {
-      // console.log(error);
       this.isSpinning = false;
       this.message.create('error', error?.statusText || error?.message);
       this.router.navigateByUrl('/user/all');
