@@ -12,7 +12,7 @@ export class ApiServices {
     ) { }
 
     loadUsers() {
-        return this.http.get('https://dummyjson.com/users')
+        return this.http.get('https://647b7aa0d2e5b6101db15a08.mockapi.io/api/v1/user-profile-demo')
             .pipe(
                 timeout(this.timeoutValue),
                 catchError(error => {
@@ -21,7 +21,7 @@ export class ApiServices {
             )
     }
     loadSingleUser(id: any) {
-        return this.http.get('https://dummyjson.com/users/' + id)
+        return this.http.get('https://647b7aa0d2e5b6101db15a08.mockapi.io/api/v1/user-profile-demo/' + id)
             .pipe(
                 timeout(this.timeoutValue),
                 catchError(error => {
@@ -31,7 +31,7 @@ export class ApiServices {
     }
 
     addUser(data: any) {
-        return this.http.post('https://dummyjson.com/users/add', data)
+        return this.http.post('https://647b7aa0d2e5b6101db15a08.mockapi.io/api/v1/user-profile-demo', data)
             .pipe(
                 timeout(this.timeoutValue),
                 catchError(error => {
@@ -41,7 +41,7 @@ export class ApiServices {
     }
 
     updateUser(data: any, id: any) {
-        return this.http.patch('https://dummyjson.com/users/' + id, data)
+        return this.http.put('https://647b7aa0d2e5b6101db15a08.mockapi.io/api/v1/user-profile-demo/' + id, data)
             .pipe(
                 timeout(this.timeoutValue),
                 catchError(error => {
@@ -51,7 +51,7 @@ export class ApiServices {
     }
 
     deleteUser(id: any) {
-        return this.http.delete('https://dummyjson.com/users/' + id)
+        return this.http.delete('https://647b7aa0d2e5b6101db15a08.mockapi.io/api/v1/user-profile-demo/' + id)
             .pipe(
                 timeout(this.timeoutValue),
                 catchError(error => {
