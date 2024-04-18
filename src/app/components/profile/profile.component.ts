@@ -56,6 +56,7 @@ export class ProfileComponent {
   deleteUser(id: any) {
     this.isSpinning = true;
     this.subs.sink = this.api_servicess.deleteUser(id).subscribe((response: any) => {
+      this.user_data = null;
       this.message.create('success', 'User Delete Succeesfully');
       this.loadSingleUser(this.user_id);
       this.isSpinning = false;
