@@ -15,10 +15,10 @@ export class ProfileComponent {
   user_id: any;
   user_data: any;
   isSpinning = false;
-  sub = new SubSink();
+  subs = new SubSink();
   constructor(
     private component_communication: ComponentsCommunicationService,
-    private api_services: ApiServices,
+    private api_servicess: ApiServices,
     private route: ActivatedRoute,
     private message: NzMessageService,
   ) {
@@ -39,7 +39,7 @@ export class ProfileComponent {
 
   loadSingleUser(id: any) {
     this.isSpinning = true;
-    this.sub.sink = this.api_services.loadSingleUser(this.user_id).subscribe((response: any) => {
+    this.subs.sink = this.api_servicess.loadSingleUser(this.user_id).subscribe((response: any) => {
       this.user_data = response;
       this.component_communication.userName.next(this.user_data.firstName);
       this.isSpinning = false;
@@ -53,8 +53,22 @@ export class ProfileComponent {
     );
   }
 
+  deleteUser(id: any) {
+    this.isSpinning = true;
+    this.subs.sink = this.api_servicess.deleteUser(id).subscribe((response: any) => {
+      this.message.create('success', 'User Delete Succeesfully');
+      this.loadSingleUser(this.user_id);
+      this.isSpinning = false;
+    }, error => {
+      this.isSpinning = false;
+      this.message.create('error', error?.error?.message || error?.message);
+
+    }
+    );
+  }
+
   ngOnDestroy() {
     this.component_communication.userName.next('');
-    this.sub.sink?.unsubscribe();
+    this.subs.sink?.unsubscribe();
   }
 }

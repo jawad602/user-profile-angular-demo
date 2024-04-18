@@ -3,5 +3,10 @@
         <h4>{{user_data?.firstName || 'Name'}}</h4>
         <p>{{user_data?.phone || 'Phone'}}</p>
         <p>{{user_data?.email || 'email'}}</p>
+        <div>
+            <a nz-button nzType="primary" routerLink="/user/edit/{{user_id}}">Edit User</a>
+            &nbsp;
+            <button (click)="deleteUser(user_id)" nz-button nzType="primary">Delete User</button>
+        </div>
     </nz-card>
 </nz-spin>
