@@ -77,7 +77,7 @@ export class AddUserComponent {
     }, error => {
       // console.log(error);
       this.isSpinning = false;
-      this.message.create('error', error?.error?.message || error?.message);
+      this.message.create('error', error?.statusText || error?.message);
     }
     );
   }
@@ -96,7 +96,7 @@ export class AddUserComponent {
 
         }, error => {
           this.isSpinning = false;
-          this.message.create('error', error?.error?.message || error?.message);
+          this.message.create('error', error?.statusText || error?.message);
 
         }
         );
@@ -110,7 +110,7 @@ export class AddUserComponent {
       }, error => {
         console.log(error)
         this.isSpinning = false;
-        this.message.create('error', error?.error?.message || error?.message);
+        this.message.create('error', error?.statusText || error?.message);
       }
       );
 

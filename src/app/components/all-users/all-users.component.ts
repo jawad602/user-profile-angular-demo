@@ -38,7 +38,7 @@ export class AllUsersComponent {
     }, error => {
       console.log(error);
       this.isSpinning = false;
-      this.message.create('error', error?.error?.message || error?.message);
+      this.message.create('error', error?.statusText || error?.message);
     }
     );
   }
@@ -51,7 +51,7 @@ export class AllUsersComponent {
       this.isSpinning = false;
     }, error => {
       this.isSpinning = false;
-      this.message.create('error', error?.error?.message || error?.message);
+      this.message.create('error', error?.statusText || error?.message);
 
     }
     );
