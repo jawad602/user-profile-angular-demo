@@ -59,20 +59,20 @@ export class AllUsersComponent {
   }
 
   onSearchChange(event: any) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.filterUsers(event.target.value);
     // this.dataSet = this.betterFilterUsers(this.dataSet, event.target.value);
   }
 
   filterUsers(filter: any) {
-    console.log(filter);
+    // console.log(filter);
     if (!filter) {
       this.dataSet = this.allUsers;
       return;
     }
     // console.log(array.filter((element: any) => element.firstName.includes(filter)));
-    this.dataSet = this.allUsers.filter((element: any) => element.firstName.includes(filter));
-    console.log(this.dataSet);
+    this.dataSet = this.allUsers.filter((element: any) => element.firstName.toLowerCase().includes(filter));
+    // console.log(this.dataSet);
   }
 
   navigate(id: any) {
