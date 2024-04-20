@@ -1,4 +1,13 @@
 <nz-spin nzSize="large" [nzSpinning]="isSpinning">
+    <div class="col-3 mx-auto mb-2 flex">
+        <nz-form-label>Search</nz-form-label>
+        <nz-input-group  class="ml-2" [nzSuffix]="suffixIconSearch">
+            <input (keyup)="onSearchChange($event)" type="text" nz-input placeholder="search user" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+        </ng-template>
+    </div>
     <nz-table class="col-11 mx-auto" #basicTable [nzData]="dataSet">
         <thead>
             <tr>
@@ -14,7 +23,7 @@
                 <td>{{data.phone}}</td>
                 <td>{{data.email}}</td>
                 <td>
-                    <a nz-button nzType="primary" routerLink="/user/edit/{{data.id}}" >Edit User</a>
+                    <a nz-button nzType="primary" routerLink="/user/edit/{{data.id}}">Edit User</a>
                     &nbsp;
                     <button (click)="deleteUser(data.id)" nz-button nzType="primary">Delete User</button>
                 </td>

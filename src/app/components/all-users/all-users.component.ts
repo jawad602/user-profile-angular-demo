@@ -11,7 +11,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrls: ['./all-users.component.scss']
 })
 export class AllUsersComponent {
-  dataSet: any = [];
+  dataSet: any;
+  allUsers: any;
   isSpinning = false;
   sub = new SubSink();
   constructor(
@@ -26,17 +27,19 @@ export class AllUsersComponent {
   ngOnInit() {
     this.isSpinning = true;
     this.loadAllUSers();
+
   }
 
   loadAllUSers() {
     this.isSpinning = true;
     this.sub.sink = this.api_service.loadUsers().subscribe((response: any) => {
-      this.dataSet = response;
+      this.dataSet = response.reverse();
+      this.allUsers = this.dataSet;
       this.isSpinning = false;
-      this.message.create('success', 'All Users ');
+      // this.message.create('success', 'All Users ');
     }, error => {
       this.isSpinning = false;
-      this.message.create('error', error?.statusText || error?.message);
+      // this.message.create('error', error?.statusText || error?.message);
     }
     );
   }
@@ -44,15 +47,32 @@ export class AllUsersComponent {
   deleteUser(id: any) {
     this.isSpinning = true;
     this.sub.sink = this.api_service.deleteUser(id).subscribe((response: any) => {
-      this.message.create('success', 'User Delete Succeesfully');
+      // this.message.create('success', 'User Delete Succeesfully');
       this.loadAllUSers();
       this.isSpinning = false;
     }, error => {
       this.isSpinning = false;
-      this.message.create('error', error?.statusText || error?.message);
+      // this.message.create('error', error?.statusText || error?.message);
 
     }
     );
+  }
+
+  onSearchChange(event: any) {
+    console.log(event.target.value);
+    this.filterUsers(event.target.value);
+    // this.dataSet = this.betterFilterUsers(this.dataSet, event.target.value);
+  }
+
+  filterUsers(filter: any) {
+    console.log(filter);
+    if (!filter) {
+      this.dataSet = this.allUsers;
+      return;
+    }
+    // console.log(array.filter((element: any) => element.firstName.includes(filter)));
+    this.dataSet = this.allUsers.filter((element: any) => element.firstName.includes(filter));
+    console.log(this.dataSet);
   }
 
   navigate(id: any) {

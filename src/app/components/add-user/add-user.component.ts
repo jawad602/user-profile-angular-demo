@@ -70,10 +70,10 @@ export class AddUserComponent {
       this.component_communication.userName.next(this.user_data.firstName);
       this.patchData(response);
       this.isSpinning = false;
-      this.message.create('success', 'User Record Loaded!');
+      // this.message.create('success', 'User Record Loaded!');
     }, error => {
       this.isSpinning = false;
-      this.message.create('error', error?.statusText || error?.message);
+      // this.message.create('error', error?.statusText || error?.message);
     }
     );
   }
@@ -87,12 +87,12 @@ export class AddUserComponent {
       if (this.user_id) {
         this.subs.sink = this.api_services.updateUser(data, this.user_id).subscribe((response: any) => {
           this.isSpinning = false;
-          this.message.create('success', 'User Record Updated!');
+          // this.message.create('success', 'User Record Updated!');
           this.router.navigateByUrl("/user/all");
 
         }, error => {
           this.isSpinning = false;
-          this.message.create('error', error?.statusText || error?.message);
+          // this.message.create('error', error?.statusText || error?.message);
 
         }
         );
@@ -101,11 +101,11 @@ export class AddUserComponent {
 
       this.subs.sink = this.api_services.addUser(data).subscribe((response: any) => {
         this.isSpinning = false;
-        this.message.create('success', 'User Record Added!');
+        // this.message.create('success', 'User Record Added!');
         this.router.navigateByUrl("/user/all");
       }, error => {
         this.isSpinning = false;
-        this.message.create('error', error?.statusText || error?.message);
+        // this.message.create('error', error?.statusText || error?.message);
       }
       );
 

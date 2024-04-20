@@ -43,10 +43,10 @@ export class ProfileComponent {
       this.user_data = response;
       this.component_communication.userName.next(this.user_data.firstName);
       this.isSpinning = false;
-      this.message.create('success', 'User Record Loaded!');
+      // this.message.create('success', 'User Record Loaded!');
     }, error => {
       this.isSpinning = false;
-      this.message.create('error', error?.statusText || error?.message);
+      // this.message.create('error', error?.statusText || error?.message);
       this.router.navigateByUrl('/user/all');
     }
   );
@@ -56,13 +56,13 @@ deleteUser(id: any) {
   this.isSpinning = true;
   this.subs.sink = this.api_servicess.deleteUser(id).subscribe((response: any) => {
     this.user_data = null;
-    this.message.create('success', 'User Delete Succeesfully');
+    // this.message.create('success', 'User Delete Succeesfully');
     // this.loadSingleUser(this.user_id);
     this.router.navigateByUrl('/user/all');
       this.isSpinning = false;
     }, error => {
       this.isSpinning = false;
-      this.message.create('error', error?.statusText || error?.message);
+      // this.message.create('error', error?.statusText || error?.message);
 
     }
     );

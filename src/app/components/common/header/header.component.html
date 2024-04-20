@@ -1,6 +1,7 @@
 <nz-header>
     <h2>{{route}}</h2>
     <div class="right">
+        
         <a nz-button nzType="primary" routerLink="user/all">All User</a>
         <a nz-button nzType="primary" routerLink="user/add">Add User</a>
         <h2 [ngClass]="{'hide': !isProfile}">{{userName}}</h2>
