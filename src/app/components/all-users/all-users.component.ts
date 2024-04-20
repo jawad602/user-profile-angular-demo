@@ -14,7 +14,7 @@ export class AllUsersComponent {
   dataSet: any;
   allUsers: any;
   isSpinning = false;
-  sub = new SubSink();
+  subs = new SubSink();
   constructor(
     private component_Communication: ComponentsCommunicationService,
     private api_service: ApiServices,
@@ -27,12 +27,13 @@ export class AllUsersComponent {
   ngOnInit() {
     this.isSpinning = true;
     this.loadAllUSers();
+    this.filterUsers();
 
   }
 
   loadAllUSers() {
     this.isSpinning = true;
-    this.sub.sink = this.api_service.loadUsers().subscribe((response: any) => {
+    this.subs.sink = this.api_service.loadUsers().subscribe((response: any) => {
       this.dataSet = response.reverse();
       this.allUsers = this.dataSet;
       this.isSpinning = false;
@@ -46,7 +47,7 @@ export class AllUsersComponent {
 
   deleteUser(id: any) {
     this.isSpinning = true;
-    this.sub.sink = this.api_service.deleteUser(id).subscribe((response: any) => {
+    this.subs.sink = this.api_service.deleteUser(id).subscribe((response: any) => {
       // this.message.create('success', 'User Delete Succeesfully');
       this.loadAllUSers();
       this.isSpinning = false;
@@ -58,24 +59,25 @@ export class AllUsersComponent {
     );
   }
 
-  onSearchChange(event: any) {
-    // console.log(event.target.value);
-    this.filterUsers(event.target.value);
-    // this.dataSet = this.betterFilterUsers(this.dataSet, event.target.value);
-  }
+  filterUsers() {
+    this.subs.sink = this.component_Communication.filterUser.subscribe((filter) => {
+      // console.log(filter);
+      if (!filter) {
+        this.dataSet = this.allUsers;
+        return;
+      }
+      // console.log(array.filter((element: any) => element.firstName.includes(filter)));
+      this.dataSet = this.allUsers.filter((element: any) => element.firstName.toLowerCase().includes(filter));
+      // console.log(this.dataSet);
+    })
 
-  filterUsers(filter: any) {
-    // console.log(filter);
-    if (!filter) {
-      this.dataSet = this.allUsers;
-      return;
-    }
-    // console.log(array.filter((element: any) => element.firstName.includes(filter)));
-    this.dataSet = this.allUsers.filter((element: any) => element.firstName.toLowerCase().includes(filter));
-    // console.log(this.dataSet);
   }
 
   navigate(id: any) {
     this.router.navigateByUrl('/profile/' + id);
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 }

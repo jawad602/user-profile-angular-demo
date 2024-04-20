@@ -1,7 +1,15 @@
 <nz-header>
     <h2>{{route}}</h2>
     <div class="right">
-        
+        <div class="search-bar flex align-center items-center" style="height: 40px;">
+            <label>Search:</label>
+            <nz-input-group class="ml-2" [nzSuffix]="suffixIconSearch">
+                <input (keyup)="onSearchChange($event)" type="text" nz-input placeholder="search user" />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+                <span nz-icon nzType="search"></span>
+            </ng-template>
+        </div>
         <a nz-button nzType="primary" routerLink="user/all">All User</a>
         <a nz-button nzType="primary" routerLink="user/add">Add User</a>
         <h2 [ngClass]="{'hide': !isProfile}">{{userName}}</h2>

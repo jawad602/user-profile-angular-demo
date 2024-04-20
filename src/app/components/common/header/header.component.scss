@@ -33,6 +33,10 @@ nz-header {
     }
 }
 
+.search-bar label {
+    font-size: 20px;
+}
+
 h1,
 h2,
 h3,
@@ -40,6 +44,7 @@ h4,
 h5,
 h6,
 p,
-span {
-    color: white;
+span,
+label {
+    color: white !important;
 }
