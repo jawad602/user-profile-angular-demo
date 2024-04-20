@@ -37,7 +37,7 @@ export class HeaderComponent {
     let timer: any;
     return (event: any) => {
       clearTimeout(timer);
-      timer = setTimeout(() => this.component_Communication.filterUser.next(event.target.value), 300)
+      timer = setTimeout(() => this.component_Communication.filterUser.next(event.target.value.toLowerCase()), 300)
     }
   }
 
